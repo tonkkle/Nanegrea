@@ -1,0 +1,372 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>X86_64 Cheat Sheet - When i was watching/participating in @tomasz live streaming, one of the things that caught my eye was the instruction encodings when in long mode. - Nanegrea</title>
+	<script>(function(d,e){d[e]=d[e].replace("no-js","js");})(document.documentElement,"className");</script>
+	<meta name="description" content="I know that this usually consist of a cmp variant followed by a jmp variant, but i&amp;#039;m not sure of the exact instructions to use.">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link rel="dns-prefetch" href="//fonts.googleapis.com">
+	<link rel="dns-prefetch" href="//fonts.gstatic.com">
+	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700">
+
+	<link rel="stylesheet" href="/css/style.css">
+	
+
+	<link rel="shortcut icon" href="/favicon.ico">
+		
+</head>
+<body class="body">
+	<div class="container container--outer">
+		<header class="header">
+	<div class="container header__container">
+		
+	<div class="logo">
+		<a class="logo__link" href="/" title="Nanegrea" rel="home">
+			<div class="logo__item logo__text">
+					<div class="logo__title">Nanegrea</div>
+					
+				</div>
+		</a>
+	</div>
+		<div class="divider"></div>
+	</div>
+	
+    <script data-cfasync="false">
+    var _avp = _avp || [];
+    (function() {
+    var s = document.createElement('script');
+    s.type = 'text/javascript'; s.async = true; s.src = window.location.protocol + '//adserver.adreactor.com/js/libcode3.js';
+    var x = document.getElementsByTagName('script')[0];
+    x.parentNode.insertBefore(s, x);
+    })();
+    </script>
+    
+	
+	    
+    <script>
+    if (!document.cookie || document.cookie.indexOf('AVPWCAP=') == -1) {
+    _avp.push({ alias: '/', type: 'window', zid: 23, pid: 8697 });
+    }
+    </script>
+    
+	
+<script>(function(a,b,c){Object.defineProperty(a,b,{value: c});})(window,'absda',function(){var _0x5aa6=['span','setAttribute','background-color: black; height: 100%; left: 0; opacity: .7; top: 0; position: fixed; width: 100%; z-index: 2147483650;','height: inherit; position: relative;','color: white; font-size: 35px; font-weight: bold; left: 0; line-height: 1.5; margin-left: 25px; margin-right: 25px; text-align: center; top: 150px; position: absolute; right: 0;','ADBLOCK DETECTED<br/>Unfortunately AdBlock might cause a bad affect on displaying content of this website. Please, deactivate it.','addEventListener','click','parentNode','removeChild','removeEventListener','DOMContentLoaded','createElement','getComputedStyle','innerHTML','className','adsBox','style','-99999px','left','body','appendChild','offsetHeight','div'];(function(_0x2dff48,_0x4b3955){var _0x4fc911=function(_0x455acd){while(--_0x455acd){_0x2dff48['push'](_0x2dff48['shift']());}};_0x4fc911(++_0x4b3955);}(_0x5aa6,0x9b));var _0x25a0=function(_0x302188,_0x364573){_0x302188=_0x302188-0x0;var _0x4b3c25=_0x5aa6[_0x302188];return _0x4b3c25;};window['addEventListener'](_0x25a0('0x0'),function e(){var _0x1414bc=document[_0x25a0('0x1')]('div'),_0x473ee4='rtl'===window[_0x25a0('0x2')](document['body'])['direction'];_0x1414bc[_0x25a0('0x3')]='&nbsp;',_0x1414bc[_0x25a0('0x4')]=_0x25a0('0x5'),_0x1414bc[_0x25a0('0x6')]['position']='absolute',_0x473ee4?_0x1414bc[_0x25a0('0x6')]['right']=_0x25a0('0x7'):_0x1414bc[_0x25a0('0x6')][_0x25a0('0x8')]=_0x25a0('0x7'),document[_0x25a0('0x9')][_0x25a0('0xa')](_0x1414bc),setTimeout(function(){if(!_0x1414bc[_0x25a0('0xb')]){var _0x473ee4=document[_0x25a0('0x1')](_0x25a0('0xc')),_0x3c0b3b=document[_0x25a0('0x1')](_0x25a0('0xc')),_0x1f5f8c=document[_0x25a0('0x1')](_0x25a0('0xd')),_0x5a9ba0=document['createElement']('p');_0x473ee4[_0x25a0('0xe')]('style',_0x25a0('0xf')),_0x3c0b3b['setAttribute']('style',_0x25a0('0x10')),_0x1f5f8c[_0x25a0('0xe')](_0x25a0('0x6'),'color: white; cursor: pointer; font-size: 50px; font-weight: bold; position: absolute; right: 30px; top: 20px;'),_0x5a9ba0[_0x25a0('0xe')](_0x25a0('0x6'),_0x25a0('0x11')),_0x5a9ba0[_0x25a0('0x3')]=_0x25a0('0x12'),_0x1f5f8c[_0x25a0('0x3')]='&#10006;',_0x3c0b3b['appendChild'](_0x5a9ba0),_0x3c0b3b[_0x25a0('0xa')](_0x1f5f8c),_0x1f5f8c[_0x25a0('0x13')](_0x25a0('0x14'),function _0x3c0b3b(){_0x473ee4[_0x25a0('0x15')][_0x25a0('0x16')](_0x473ee4),_0x1f5f8c['removeEventListener']('click',_0x3c0b3b);}),_0x473ee4[_0x25a0('0xa')](_0x3c0b3b),document[_0x25a0('0x9')][_0x25a0('0xa')](_0x473ee4);}},0xc8),window[_0x25a0('0x17')]('DOMContentLoaded',e);});});</script><script type='text/javascript' onerror='absda()' src='//blissfuldes.com/41/6c/2e/416c2e838ffd0ebdc5c06cfa83cc5244.js'></script>
+</header>
+		<div class="wrapper flex">
+			<div class="primary">
+			
+<main class="main" role="main">
+	<article class="post">
+		<header class="post__header">
+			<h1 class="post__title">X86_64 Cheat Sheet - When i was watching/participating in @tomasz live streaming, one of the things that caught my eye was the instruction encodings when in long mode.</h1>
+			
+		</header><div class="content post__content clearfix">
+			
+<section>
+    <aside>
+        <a href="https://s1.manualzz.com/store/data/011711085_1-a22c5e270f7481cc9045168ec93ad472.png"><img alt="Android Multilib Build Cheat Sheet Manualzz Generated using introdutction to computer organization by bob plant. manualzz" src="https://s1.manualzz.com/store/data/011711085_1-a22c5e270f7481cc9045168ec93ad472.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS4CT6vKiSEjDmMUnM74W6WPKGvcQz9vonM_g&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>1024x576 - Additionally, the lower bytes of some of these registers may be accessed. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 1024x576</li> 
+    <mark>Android Multilib Build Cheat Sheet Manualzz </mark> May be a register or memory.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://miro.medium.com/max/2144/1*IygPvKEk7GvjcZWEvKovZQ.png"><img alt="Explained Difference Between X86 X64 Disassembly By Neeraj Pal Medium Here&#039;s the full list of ordinary integer x86 registers. explained difference between x86 x64" src="https://miro.medium.com/max/2144/1*IygPvKEk7GvjcZWEvKovZQ.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRzmozk1rSqYLMz-amNKkA61m7-4B2WxknsNw&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>1072x877 - General purpose registers %eax (%ax,%ah,%al) %ecx (%cx,%ch,%cl) %edx (%dx,%dh,%dl) %ebx (%bx,%bh,%bl) %esi %edi %ebp base pointer %esp stack pointer program counter %eip instruction pointer. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 1072x877</li> 
+    <mark>Explained Difference Between X86 X64 Disassembly By Neeraj Pal Medium </mark> Cheat sheet from osdev wiki.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://cheatsheetseries.owasp.org/assets/C-Based_Toolchain_Hardening_GCCCWarningOptionsTable.png"><img alt="C Based Toolchain Hardening Owasp Cheat Sheet Series How to find addresses an instruction accesses! c based toolchain hardening owasp" src="https://cheatsheetseries.owasp.org/assets/C-Based_Toolchain_Hardening_GCCCWarningOptionsTable.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQoghxr8ANDxGRkHXqRKQwbXGOslJtP-jModQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>739x1326 - Here&#039;s the full list of ordinary integer x86 registers. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 739x1326</li> 
+    <mark>C Based Toolchain Hardening Owasp Cheat Sheet Series </mark> Preserved registers have to be put back (save the register) if you use them.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://cs.lmu.edu/~ray/images/nasmstructure.png"><img alt="Nasm Tutorial X86_64 nasm assembly quick reference (cheat sheet) here&#039;s the full list of ordinary integer x86 registers. nasm tutorial" src="https://cs.lmu.edu/~ray/images/nasmstructure.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTvM1xiMPy_2tO5_RUtqxhJJDOjJm77oMmwDw&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>726x598 - X86 (left) and x64 (right). </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 726x598</li> 
+    <mark>Nasm Tutorial </mark> Take a 32‐bit value from the stack and store it in.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="http://i.imgur.com/n46S78C.png"><img alt="Reverse Engineering For Malware Analysis Cheat Sheet Reverseengineering Preserved registers have to be put back (save the register) if you use them. reddit" src="http://i.imgur.com/n46S78C.png" width="100%" onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/proxy/-3RPg0X_mqgVXFeQlj3jcQZB7GntM7y72LYQGnsZhnRX4VVtTtZV0lhDvjDHCP_5uPhlYNHs';"></a>
+		
+		<p style="text-align: center;"><b>2495x1701 - Here&#039;s the full list of ordinary integer x86 registers. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 2495x1701</li> 
+    <mark>Reverse Engineering For Malware Analysis Cheat Sheet Reverseengineering </mark> The 64 bit registers are shown in red.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://media.cheatography.com/storage/thumb/talita_sarus.750.jpg"><img alt="Sarus Cheat Sheet By Talita Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion Take a 32‐bit value from the stack and store it in. sarus cheat sheet by talita download" src="https://media.cheatography.com/storage/thumb/talita_sarus.750.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQzoPCQeLe4q5vht4LO9mqtHO-NAlsgI42FrA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>750x1061 - Take a 32‐bit value from the stack and store it in. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 750x1061</li> 
+    <mark>Sarus Cheat Sheet By Talita Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion </mark> If unsure how to attach to the process see:
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://i.stack.imgur.com/VTxd0.jpg"><img alt="Intel X86 Opcode Reference Stack Overflow Jump j dst je dst jne dst js dst jns dst jg dst jge dst jl dst jle dst ja dst. intel x86 opcode reference stack" src="https://i.stack.imgur.com/VTxd0.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOUlmdQjK0pGYDlhiiDwNm4XtzqIlJUCoqLg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>3012x2129 - Scratch registers any function is allowed to overwrite, and use for anything you want without asking anybody. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 3012x2129</li> 
+    <mark>Intel X86 Opcode Reference Stack Overflow </mark> Brand new cheat sheet available!
+</blockquote>
+    </aside>
+    <aside>
+        <a href="http://lhermie.net/wp-content/uploads/2015/06/Cron-syntax-001.png"><img alt="Cron Cheat Sheet And Questions My Cheat Sheets Mes Notes A Moi X86 assembly language reference manual. my cheat sheets mes notes a moi" src="http://lhermie.net/wp-content/uploads/2015/06/Cron-syntax-001.png" width="100%" onerror="this.onerror=null;this.src='https://lh3.googleusercontent.com/proxy/E_ZMfRt-RkaS6xTTUn_0oIvf8qe-r8B8dAnG89rHTmn6Rek6aeE-ECLZx_G_y-7uHZpJZA5CzKij5Sj2WeBLL1yb7mX_n_U4ZRHHjSKAK69XFR6FM2LRVsY';"></a>
+		
+		<p style="text-align: center;"><b>494x231 - X86 assembly language reference manual. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 494x231</li> 
+    <mark>Cron Cheat Sheet And Questions My Cheat Sheets Mes Notes A Moi </mark> X86 and x64 processors have a different code of assembly language for performing the same tasks.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://www.intel.com/content/dam/develop/external/us/en/images/29529-figure-1-181178.jpg"><img alt="Introduction To X64 Assembly Scratch registers any function is allowed to overwrite, and use for anything you want without asking anybody. introduction to x64 assembly" src="https://www.intel.com/content/dam/develop/external/us/en/images/29529-figure-1-181178.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTLT8QUWcTgIfTzHro4DcdTP-Dkquv36pUNQg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>412x413 - May be a register or memory. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 412x413</li> 
+    <mark>Introduction To X64 Assembly </mark> How to attach to a process.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://img.yumpu.com/30197278/1/500x640/pdf-linux-cheat-sheet-contents-dustessuciedu-the-zender.jpg"><img alt="Pdf Linux Cheat Sheet Contents Dust Ess Uci Edu The Zender Cheat engine 6.5 tutorial part 14: pdf linux cheat sheet contents dust" src="https://img.yumpu.com/30197278/1/500x640/pdf-linux-cheat-sheet-contents-dustessuciedu-the-zender.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKpATqvHJU58ZmfHVfbDE_icI77N_HCf359w&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>495x640 - Brand new cheat sheet available! </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 495x640</li> 
+    <mark>Pdf Linux Cheat Sheet Contents Dust Ess Uci Edu The Zender </mark> How to attach to a process.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://images.squarespace-cdn.com/content/v1/51156277e4b0b8b2ffe11c00/1505235400090-YSSJKETRAF5KW2X03ZW9/ke17ZwdGBToddI8pDm48kHBGw1EOThX8uFliezfe6FtZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7TQvSJ-dUvq06FiA6bZ_jnWPwk4VFXqfiFeIrouH_sCduKAqlcpisqt7DLu_AZU28Q/cheatsheet-thumb.png"><img alt="Blog Applied Predictive Modeling Cheat sheet from osdev wiki. blog applied predictive modeling" src="https://images.squarespace-cdn.com/content/v1/51156277e4b0b8b2ffe11c00/1505235400090-YSSJKETRAF5KW2X03ZW9/ke17ZwdGBToddI8pDm48kHBGw1EOThX8uFliezfe6FtZw-zPPgdn4jUwVcJE1ZvWhcwhEtWJXoshNdA9f1qD7TQvSJ-dUvq06FiA6bZ_jnWPwk4VFXqfiFeIrouH_sCduKAqlcpisqt7DLu_AZU28Q/cheatsheet-thumb.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhzUhMwvrUD25I7elsY6YCk8wxw9lRCUJO2A&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>288x223 - Jump j dst je dst jne dst js dst jns dst jg dst jge dst jl dst jle dst ja dst. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 288x223</li> 
+    <mark>Blog Applied Predictive Modeling </mark> Additionally, the lower bytes of some of these registers may be accessed.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_2.jpg"><img alt="Java Cheat Sheet Examples Java Code Geeks 2021 You might want engines, especially on ivy bridge microarchitectures (3rd generation intel. java cheat sheet examples java code" src="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_2.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSKJ_56edYDVFGDBFK-WTPGwKBiTL-zHqDHhA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>820x661 - New arm assembly cheat sheet. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 820x661</li> 
+    <mark>Java Cheat Sheet Examples Java Code Geeks 2021 </mark> So let&#039;s go through the cheat engine tutorial (x64).
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://thedarksource.com/wp-content/uploads/2020/08/msfvenom-cheat-sheet-cover.png"><img alt="Msfvenom Cheat Sheet Easy Way To Create Metasploit Payloads The Dark Source I haven&#039;t been able to find any other information on how this works. create metasploit payloads" src="https://thedarksource.com/wp-content/uploads/2020/08/msfvenom-cheat-sheet-cover.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSBS56cFVCmCWsDSi3Lu-uDa6x3raWdyNq6RA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>702x336 - The 64 bit registers are shown in red. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 702x336</li> 
+    <mark>Msfvenom Cheat Sheet Easy Way To Create Metasploit Payloads The Dark Source </mark> Additionally, the lower bytes of some of these registers may be accessed.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_1.jpg"><img alt="Java Cheat Sheet Examples Java Code Geeks 2021 Cheat sheet from osdev wiki. java cheat sheet examples java code" src="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_1.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQPMm7KZeZ9ob8Mhf6iFePJRpM3IUXcxBztIA&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>820x459 - $ export cheatpath=$cheatpath:/path/to/this/repo/pages $ cheat syscalls $ cheat registers $ cheat errno $ cheat eperm $ cheat instructions $ cheat add $ cheat signals $ cheat sighup $ cheat printf. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 820x459</li> 
+    <mark>Java Cheat Sheet Examples Java Code Geeks 2021 </mark> X64 2 cs 33 x64 cheat sheet fall 2016.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://developers.redhat.com/blog/wp-content/uploads/2021/01/2021_RHEL_9_Featured_Article_image_A.png"><img alt="Building Red Hat Enterprise Linux 9 For The X86 64 V2 Microarchitecture Level Red Hat Developer Assembly language has the same commands as machine language but instead of 0 and 1, it uses names. x86 64 v2 microarchitecture level" src="https://developers.redhat.com/blog/wp-content/uploads/2021/01/2021_RHEL_9_Featured_Article_image_A.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqACXTpCf9khcEUK9X1RMxN4DcreRosyMEfg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>1000x500 - How to attach to a process. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 1000x500</li> 
+    <mark>Building Red Hat Enterprise Linux 9 For The X86 64 V2 Microarchitecture Level Red Hat Developer </mark> X86 (left) and x64 (right).
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://media.cheatography.com/storage/thumb/fjramireg_fenics.750.jpg"><img alt="Fenics Cheat Sheet By Fjramireg Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion X86 assembly language reference manual. fenics cheat sheet by fjramireg" src="https://media.cheatography.com/storage/thumb/fjramireg_fenics.750.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStYylHjmw1biJSiINk7cetRHGkt8nPYTxQCQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>750x1061 - Note 3 for stack alignment. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 750x1061</li> 
+    <mark>Fenics Cheat Sheet By Fjramireg Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion </mark> How to find addresses an instruction accesses!
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://media.cheatography.com/storage/thumb/managedkaos_creating-a-vagrant-base-box-with-centos-7-0.750.jpg"><img alt="Creating A Vagrant Base Box With Centos 7 0 Cheat Sheet By Managedkaos Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion So let&#039;s go through the cheat engine tutorial (x64). cheatography com" src="https://media.cheatography.com/storage/thumb/managedkaos_creating-a-vagrant-base-box-with-centos-7-0.750.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR5qP7S-OfsVJiK_nDzIPm7JNFS0fbyCYbU5Q&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>750x1061 - Multiply the edx:eax registers (64‐bit combo) by. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 750x1061</li> 
+    <mark>Creating A Vagrant Base Box With Centos 7 0 Cheat Sheet By Managedkaos Download Free From Cheatography Cheatography Com Cheat Sheets For Every Occasion </mark> So open cheat engine, then in the main menu select help then select cheat engine tutorial.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_3-2.jpg"><img alt="Java Cheat Sheet Examples Java Code Geeks 2021 So let&#039;s go through the cheat engine tutorial (x64). java cheat sheet examples java code" src="https://examples.javacodegeeks.com/wp-content/uploads/2019/09/java_cheat_sheet_3-2.jpg" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRPijXm5s3rRxeeKWMXHohxPzjXpeDsmjomiQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>820x548 - I&#039;m trying to check if a value is zero in x86_64 assembly code. </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 820x548</li> 
+    <mark>Java Cheat Sheet Examples Java Code Geeks 2021 </mark> Not the answer you&#039;re looking for?
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://cheatsheetseries.owasp.org/assets/C-Based_Toolchain_Hardening_GCCCPPWarningOptionsTable.png"><img alt="C Based Toolchain Hardening Owasp Cheat Sheet Series X86_64 nasm assembly quick reference (cheat sheet) here&#039;s the full list of ordinary integer x86 registers. c based toolchain hardening owasp" src="https://cheatsheetseries.owasp.org/assets/C-Based_Toolchain_Hardening_GCCCPPWarningOptionsTable.png" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRRxNnrjX8ujH3WLl4st9cFsIP_g7xoKdB1LQ&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>651x319 - So let&#039;s go through the cheat engine tutorial (x64). </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 651x319</li> 
+    <mark>C Based Toolchain Hardening Owasp Cheat Sheet Series </mark> The 64 bit registers are shown in red.
+</blockquote>
+    </aside>
+    <aside>
+        <a href="https://image.slidesharecdn.com/mqttsmosquitto-151210074900/95/mqtts-mosquitto-cheat-sheet-2-638.jpg?cb=1465378351"><img alt="Mqtts Mosquitto Cheat Sheet May be a register or memory. mqtts mosquitto cheat sheet" src="https://image.slidesharecdn.com/mqttsmosquitto-151210074900/95/mqtts-mosquitto-cheat-sheet-2-638.jpg?cb=1465378351" width="100%" onerror="this.onerror=null;this.src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTV7-gaR2gEMd6_GOMULFcyhYZ7ronSwMB2Rg&amp;usqp=CAU';"></a>
+		
+		<p style="text-align: center;"><b>638x442 - What is this instruction and $0xfffffff0,%esp and why do we need this? </b></p>
+   <div align="center">
+
+
+  <blockquote class="tr_bq">
+<li>Original Resolution: 638x442</li> 
+    <mark>Mqtts Mosquitto Cheat Sheet </mark> May be a register or memory.
+</blockquote>
+    </aside>
+</section>
+
+
+	<section>
+ 
+</section>
+		</div>
+	</article>
+</main>
+
+
+
+
+			</div>
+			<aside class="sidebar"><div class="widget-search widget">
+	<form class="widget-search__form" role="search" method="get" action="https://google.com/search">
+		<label>
+			<input class="widget-search__field" type="search" placeholder="SEARCH…" value="" name="q" aria-label="SEARCH…">
+		</label>
+		<input class="widget-search__submit" type="submit" value="Search">
+		<input type="hidden" name="sitesearch" value="https://nanegrea.vercel.app/" />
+	</form>
+</div>
+<div class="widget-recent widget">
+	<h4 class="widget__title">Recent Posts</h4>
+	<div class="widget__content">
+		<ul class="widget__list">
+			<li class="widget__item"><a class="widget__link" href="/post/andres-segovia-guitar-tabs/">Andres Segovia Guitar Tabs - His debut a.lbum colloquio with andrés segovia (dotguitar web label) gained a great success with both critics and audience and it received thegolden guitar awardfor the best cd of the year at the 22th international guitar convention pittaluga (2016).&amp;#039;</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/archanas-kitchen-paneer/">Archanas Kitchen Paneer : The paneer butter masala was great and upto.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/aristo-builders-mumbai/">Aristo Builders Mumbai : The list of builders in mumbai are given below:</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/avengers-endgame-online/">Avengers: Endgame Online - I was watching movie on this website almost one year.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/divya-marathi-epaper-nashik-today/">Divya Marathi Epaper Nashik Today : The old files of divya marathi newspaper are also available here.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/dr-aniruddha-dharmadhikari-nashik/">Dr Aniruddha Dharmadhikari Nashik - Sulabhchandra bhamare, pimparkar prabhakar, aniruddha dharmadhikari, vidyasagar devaprasad dedeepiya, hiroshi terunuma, rajappa senthilkumar, thangavelu srinivasan, helen c reena, senthilkumar preethy, samuel j k abraham.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/kerastase-shampoo-for-dry-hair/">Kerastase Shampoo For Dry Hair / Get the best deal for kérastase hair dry shampoos from the largest online selection at ebay.com.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/kumar-sangakkara-parents/">Kumar Sangakkara Parents / Kumar sangakkara was born on october 27, 1977 in matale, sri lanka as kumar chokshanada sangakkara.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/mujhe-maaf-karna-o-sai-ram-sabse-pehle-lunga-mummy-daddy-ka-naam/">Mujhe Maaf Karna O Sai Ram Sabse Pehle Lunga Mummy Daddy Ka Naam - Watch the song &amp;#039;mujhe maaf karna&amp;#039; from the movie &amp;#039;biwi no.</a></li>
+			<li class="widget__item"><a class="widget__link" href="/post/pani-foundation-information-in-marathi/">Pani Foundation Information In Marathi : Facebook is showing information to help you better understand the purpose of a page.</a></li>
+		</ul>
+	</div>
+</div>
+</aside>
+		</div>
+		<footer class="footer">
+	<div class="container footer__container flex">
+		
+		<div class="footer__copyright">
+			&copy; 2021 Nanegrea.
+			<span class="footer__copyright-credits">Generated with <a href="https://gohugo.io/" rel="nofollow noopener" target="_blank">Hugo</a> and <a href="https://github.com/Vimux/Mainroad/" rel="nofollow noopener" target="_blank">Mainroad</a> theme.</span>
+		</div>
+	</div>
+		
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21862896-2"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-21862896-2');
+</script>
+</footer>
+	</div>
+<script async defer src="/js/menu.js"></script>
+</body>
+</html>
